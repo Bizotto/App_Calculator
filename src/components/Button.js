@@ -11,12 +11,26 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#888',
   },
+  opretionButton: {
+    color: '#fff',
+    backgroundColor: '#fa8231',
+  },
+  buttonDoble: {
+    width: (Dimensions.get('window').width / 4) * 2,
+  },
+  buttonTriple: {
+    width: (Dimensions.get('window').width / 4) * 3,
+  },
 });
 
 export default props => {
+  const stylesButton = [styles.button];
+  if (props.doble) stylesButton.push(styles.buttonDoble);
+  if (props.triple) stylesButton.push(styles.buttonTriple);
+  if (props.opretion) stylesButton.push(styles.opretionButton)
   return (
-    <TouchableHighLight onPress={props.onClick}>
-      <Text Style={styles.button}>{props.label}</Text>
+    <TouchableHighLight onPress={() => props.onClick(props.label)}>
+      <Text Style={stylesButton}>{props.label}</Text>
     </TouchableHighLight>
   );
 };
